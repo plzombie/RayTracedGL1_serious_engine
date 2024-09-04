@@ -1,5 +1,7 @@
 # RTGL1
 
+Fork of [RTGL1](https://github.com/sultim-t/RayTracedGL1) specially for Serious Sam RT.
+
 ***Work in progress***
 
 RTGL1 is a library that simplifies the process of porting applications with fixed-function pipeline to *real-time path tracing*.
@@ -91,7 +93,6 @@ On RTGL1 initialization, `RgInstanceCreateInfo::pOverridenTexturesFolderPath` sh
 
 # Projects
 * https://github.com/sultim-t/Serious-Engine-RT/releases
-* https://github.com/sultim-t/prboom-plus-rt
 
 ## Screenshots
 ![Screenshot 00](/Doc/Screenshots/Screenshot_00.png)

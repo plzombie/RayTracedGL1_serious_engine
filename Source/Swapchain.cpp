@@ -219,11 +219,21 @@ void Swapchain::Present(const std::shared_ptr<Queues> &queues, VkSemaphore rende
     presentInfo.pImageIndices = &currentSwapchainIndex;
     presentInfo.pResults = nullptr;
 
-    VkResult r = vkQueuePresentKHR(queues->GetGraphics(), &presentInfo);
+    VkQueue queue = queues->GetGraphics();
+    VkResult r = vkQueuePresentKHR(queue, &presentInfo);
 
     if (r == VK_ERROR_OUT_OF_DATE_KHR || r == VK_SUBOPTIMAL_KHR)
     {
         TryRecreate(requestedExtent.width, requestedExtent.height, requestedVsync);
+
+        return;
+    }
+
+    r = vkQueueWaitIdle(queue);
+
+    if (r != VK_SUCCESS)
+    {
+        // Should recreate device there or something
     }
 }
 
