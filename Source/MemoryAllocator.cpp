@@ -257,7 +257,7 @@ VkDeviceMemory MemoryAllocator::AllocDedicated(const VkMemoryRequirements &memRe
     VkResult r = vkAllocateMemory(device, &memAllocInfo, nullptr, &memory);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, memory, VK_OBJECT_TYPE_DEVICE_MEMORY, pDebugName);
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, memory, VK_OBJECT_TYPE_DEVICE_MEMORY, pDebugName);
 
     return memory;
 }

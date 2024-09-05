@@ -77,7 +77,7 @@ void Buffer::Init(
         address = vkGetBufferDeviceAddress(device, &addrInfo);
     }
 
-    SET_DEBUG_NAME(device, buffer, VK_OBJECT_TYPE_BUFFER, debugName);
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, buffer, VK_OBJECT_TYPE_BUFFER, debugName);
 
     size = bsize;
 }

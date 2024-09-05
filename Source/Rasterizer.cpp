@@ -434,7 +434,7 @@ void Rasterizer::CreatePipelineLayout(VkDescriptorSetLayout texturesSetLayout)
     VkResult r = vkCreatePipelineLayout(device, &layoutInfo, nullptr, &commonPipelineLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, commonPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Rasterizer common pipeline layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, commonPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Rasterizer common pipeline layout");
 }
 
 }

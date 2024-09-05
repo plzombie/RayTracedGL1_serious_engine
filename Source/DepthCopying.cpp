@@ -163,7 +163,7 @@ void RTGL1::DepthCopying::CreateRenderPass(VkFormat depthFormat)
     VkResult r = vkCreateRenderPass(device, &passInfo, nullptr, &renderPass);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, renderPass, VK_OBJECT_TYPE_RENDER_PASS, "Depth copying render pass");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, renderPass, VK_OBJECT_TYPE_RENDER_PASS, "Depth copying render pass");
 }
 
 void RTGL1::DepthCopying::CreateFramebuffers(VkImageView pDepthAttchViews[MAX_FRAMES_IN_FLIGHT], uint32_t width, uint32_t height)
@@ -217,7 +217,7 @@ void RTGL1::DepthCopying::CreatePipelineLayout(VkDescriptorSetLayout fbSetLayout
     VkResult r = vkCreatePipelineLayout(device, &layoutInfo, nullptr, &pipelineLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Depth copying raster pipeline layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Depth copying raster pipeline layout");
 }
 
 void RTGL1::DepthCopying::CreatePipeline(const ShaderManager *shaderManager)
@@ -322,8 +322,8 @@ void RTGL1::DepthCopying::CreatePipeline(const ShaderManager *shaderManager)
     plInfo.subpass = 0;
     plInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-    VkResult r = vkCreateGraphicsPipelines(device, nullptr, 1, &plInfo, nullptr, &pipeline);
+    VkResult r = vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &pipeline);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, pipeline, VK_OBJECT_TYPE_PIPELINE, "Rasterizer raster draw pipeline");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipeline, VK_OBJECT_TYPE_PIPELINE, "Rasterizer raster draw pipeline");
 }

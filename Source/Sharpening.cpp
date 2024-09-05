@@ -136,7 +136,7 @@ void RTGL1::Sharpening::CreatePipelineLayout(VkDescriptorSetLayout*pSetLayouts, 
     VkResult r = vkCreatePipelineLayout(device, &plLayoutInfo, nullptr, &pipelineLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "CAS pipeline layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "CAS pipeline layout");
 }
 
 void RTGL1::Sharpening::CreatePipelines(const ShaderManager *shaderManager)
@@ -190,7 +190,7 @@ void RTGL1::Sharpening::CreatePipelines(const ShaderManager *shaderManager)
             VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, GetPipeline(t, b));
             VK_CHECKERROR(r);
 
-            SET_DEBUG_NAME(device, *GetPipeline(t, b), VK_OBJECT_TYPE_PIPELINE, data.useSimpleSharp ? "Simple sharpening" : "CAS");
+            SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, *GetPipeline(t, b), VK_OBJECT_TYPE_PIPELINE, data.useSimpleSharp ? "Simple sharpening" : "CAS");
         }
     }
 }

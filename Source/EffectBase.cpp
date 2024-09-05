@@ -74,7 +74,7 @@ void RTGL1::EffectBase::CreatePipelines(const ShaderManager *shaderManager)
         VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &pipelines[isSourcePing]);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, pipelines[isSourcePing], VK_OBJECT_TYPE_PIPELINE, (std::string(GetShaderName()) + " from " + (isSourcePing ? "Ping" : "Pong")).c_str());
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelines[isSourcePing], VK_OBJECT_TYPE_PIPELINE, (std::string(GetShaderName()) + " from " + (isSourcePing ? "Ping" : "Pong")).c_str());
     }
 }
 

@@ -75,8 +75,8 @@ void RTGL1::SwapchainPass::CreateFramebuffers(uint32_t newSwapchainWidth, uint32
             VkResult r = vkCreateFramebuffer(device, &fbInfo, nullptr, &fbPong[i]);
             VK_CHECKERROR(r);
         }
-        SET_DEBUG_NAME(device, fbPing[i], VK_OBJECT_TYPE_FRAMEBUFFER, "Rasterizer swapchain ping framebuffer");
-        SET_DEBUG_NAME(device, fbPong[i], VK_OBJECT_TYPE_FRAMEBUFFER, "Rasterizer swapchain pong framebuffer");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, fbPing[i], VK_OBJECT_TYPE_FRAMEBUFFER, "Rasterizer swapchain ping framebuffer");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, fbPong[i], VK_OBJECT_TYPE_FRAMEBUFFER, "Rasterizer swapchain pong framebuffer");
     }
 
     this->swapchainWidth = newSwapchainWidth;
@@ -188,5 +188,5 @@ void RTGL1::SwapchainPass::CreateSwapchainRenderPass(VkFormat surfaceFormat)
     VkResult r = vkCreateRenderPass(device, &passInfo, nullptr, &swapchainRenderPass);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, swapchainRenderPass, VK_OBJECT_TYPE_RENDER_PASS, "Rasterizer swapchain render pass");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, swapchainRenderPass, VK_OBJECT_TYPE_RENDER_PASS, "Rasterizer swapchain render pass");
 }

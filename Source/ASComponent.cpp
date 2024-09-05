@@ -95,7 +95,7 @@ void RTGL1::BLASComponent::CreateAS(VkDeviceSize size)
     VkResult r = svkCreateAccelerationStructureKHR(device, &info, nullptr, &as);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, as, VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR, debugName);
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, as, VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR, debugName);
 }
 
 void RTGL1::TLASComponent::CreateAS(VkDeviceSize size)
@@ -111,7 +111,7 @@ void RTGL1::TLASComponent::CreateAS(VkDeviceSize size)
     VkResult r = svkCreateAccelerationStructureKHR(device, &tlasInfo, nullptr, &as);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, as, VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR, debugName);
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, as, VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR, debugName);
 }
 
 bool RTGL1::ASComponent::IsValid(const VkAccelerationStructureBuildSizesInfoKHR &buildSizes) const

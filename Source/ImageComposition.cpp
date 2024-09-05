@@ -173,7 +173,7 @@ void RTGL1::ImageComposition::CreatePipelineLayout(VkDevice device,
     VkResult r = vkCreatePipelineLayout(device, &plLayoutInfo, nullptr, pDstPipelineLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, *pDstPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, pDebugName);
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, *pDstPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, pDebugName);
 }
 
 void RTGL1::ImageComposition::CreatePipelines(const ShaderManager *shaderManager)
@@ -187,7 +187,7 @@ void RTGL1::ImageComposition::CreatePipelines(const ShaderManager *shaderManager
         VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &composePipeline);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, composePipeline, VK_OBJECT_TYPE_PIPELINE, "Composition pipeline");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, composePipeline, VK_OBJECT_TYPE_PIPELINE, "Composition pipeline");
     }
 
     {
@@ -199,7 +199,7 @@ void RTGL1::ImageComposition::CreatePipelines(const ShaderManager *shaderManager
         VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &checkerboardPipeline);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, checkerboardPipeline, VK_OBJECT_TYPE_PIPELINE, "Checkerboard pipeline");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, checkerboardPipeline, VK_OBJECT_TYPE_PIPELINE, "Checkerboard pipeline");
     }
 }
 

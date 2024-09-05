@@ -119,7 +119,7 @@ BlueNoise::BlueNoise(
 
     blueNoiseImages = allocator->CreateDstTextureImage(&info, "Blue noise image VMA alloc");
 
-    SET_DEBUG_NAME(device, blueNoiseImages, VK_OBJECT_TYPE_IMAGE, "Blue noise Image");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, blueNoiseImages, VK_OBJECT_TYPE_IMAGE, "Blue noise Image");
 
     // copy from buffer to image
     VkCommandBuffer cmd = _cmdManager->StartGraphicsCmd();
@@ -182,7 +182,7 @@ BlueNoise::BlueNoise(
     VkResult r = vkCreateImageView(device, &viewInfo, nullptr, &blueNoiseImagesView);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, blueNoiseImagesView, VK_OBJECT_TYPE_IMAGE_VIEW, "Blue noise View");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, blueNoiseImagesView, VK_OBJECT_TYPE_IMAGE_VIEW, "Blue noise View");
     
     CreateDescriptors();
 }
@@ -261,7 +261,7 @@ void BlueNoise::CreateDescriptors()
 
     vkUpdateDescriptorSets(device, 1, &write, 0, nullptr);
 
-    SET_DEBUG_NAME(device, descSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Blue noise Desc set layout");
-    SET_DEBUG_NAME(device, descPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Blue noise Desc pool");
-    SET_DEBUG_NAME(device, descSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Blue noise Desc set");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Blue noise Desc set layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Blue noise Desc pool");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Blue noise Desc set");
 }

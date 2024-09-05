@@ -147,7 +147,7 @@ void RTGL1::SuperResolution::CreatePipelineLayout(VkDescriptorSetLayout*pSetLayo
     VkResult r = vkCreatePipelineLayout(device, &plLayoutInfo, nullptr, &pipelineLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "FSR pipeline layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "FSR pipeline layout");
 }
 
 void RTGL1::SuperResolution::CreatePipelines(const ShaderManager *shaderManager)
@@ -165,7 +165,7 @@ void RTGL1::SuperResolution::CreatePipelines(const ShaderManager *shaderManager)
         VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &pipelineEasu);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, pipelineEasu, VK_OBJECT_TYPE_PIPELINE, "FSR EASU pipeline");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelineEasu, VK_OBJECT_TYPE_PIPELINE, "FSR EASU pipeline");
     }
 
     {
@@ -177,7 +177,7 @@ void RTGL1::SuperResolution::CreatePipelines(const ShaderManager *shaderManager)
         VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &pipelineRcas);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, pipelineRcas, VK_OBJECT_TYPE_PIPELINE, "FSR RCAS pipeline");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelineRcas, VK_OBJECT_TYPE_PIPELINE, "FSR RCAS pipeline");
     }
 
 }

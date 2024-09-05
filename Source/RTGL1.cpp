@@ -41,7 +41,7 @@ static rgl::unordered_map<RgInstance, std::unique_ptr<VulkanDevice>> G_DEVICES;
 
 static RgInstance GetNextID()
 {
-    return reinterpret_cast<RgInstance>(G_DEVICES.size() + 1024);
+    return CAST_TO_NON_DISPATCHABLE_HANDLE(G_DEVICES.size() + 1024, RgInstance);
 }
 
 static const std::unique_ptr<VulkanDevice> &GetDevice(RgInstance rgInstance)
@@ -70,7 +70,7 @@ static void TryPrintError(RgInstance rgInstance, const char *pMessage)
 
 RgResult rgCreateInstance(const RgInstanceCreateInfo *pInfo, RgInstance *pResult)
 {
-    *pResult = nullptr;
+    *pResult = VK_NULL_HANDLE;
 
     if (G_DEVICES.size() >= MAX_DEVICE_COUNT)
     {

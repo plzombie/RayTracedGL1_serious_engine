@@ -442,7 +442,7 @@ VkPipeline RTGL1::RasterizerPipelines::CreatePipeline(RgRasterizedGeometryStateF
     VkResult r = vkCreateGraphicsPipelines(device, pipelineCache, 1, &plInfo, nullptr, &pipeline);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, pipeline, VK_OBJECT_TYPE_PIPELINE, "Rasterizer raster draw pipeline");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipeline, VK_OBJECT_TYPE_PIPELINE, "Rasterizer raster draw pipeline");
 
     return pipeline;
 }

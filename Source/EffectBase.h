@@ -111,7 +111,7 @@ void EffectBase::CreatePipelineLayout(const VkDescriptorSetLayout(&setLayouts)[D
     VkResult r = vkCreatePipelineLayout(device, &plLayoutInfo, nullptr, &pipelineLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "EffectBase pipeline layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "EffectBase pipeline layout");
 }
 
 template <int DESC_SET_COUNT>

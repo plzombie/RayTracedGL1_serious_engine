@@ -203,7 +203,7 @@ void RTGL1::Bloom::CreatePipelineLayout(VkDescriptorSetLayout *pSetLayouts, uint
     VkResult r = vkCreatePipelineLayout(device, &plLayoutInfo, nullptr, &pipelineLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Bloom pipeline layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, pipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Bloom pipeline layout");
 }
 
 void RTGL1::Bloom::CreatePipelines(const ShaderManager *shaderManager)
@@ -265,7 +265,7 @@ void RTGL1::Bloom::CreateStepPipelines(const ShaderManager *shaderManager)
             VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &downsamplePipelines[i]);
             VK_CHECKERROR(r);
 
-            SET_DEBUG_NAME(device, downsamplePipelines[i], VK_OBJECT_TYPE_PIPELINE, dnsmplDebugNames[i]);
+            SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, downsamplePipelines[i], VK_OBJECT_TYPE_PIPELINE, dnsmplDebugNames[i]);
         }
 
         {
@@ -275,7 +275,7 @@ void RTGL1::Bloom::CreateStepPipelines(const ShaderManager *shaderManager)
             VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &upsamplePipelines[i]);
             VK_CHECKERROR(r);
 
-            SET_DEBUG_NAME(device, upsamplePipelines[i], VK_OBJECT_TYPE_PIPELINE, upsmplDebugNames[i]);
+            SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, upsamplePipelines[i], VK_OBJECT_TYPE_PIPELINE, upsmplDebugNames[i]);
         }
     }
 }
@@ -316,7 +316,7 @@ void RTGL1::Bloom::CreateApplyPipelines(const ShaderManager *shaderManager)
         VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &plInfo, nullptr, &applyPipelines[isSourcePing]);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, applyPipelines[isSourcePing], VK_OBJECT_TYPE_PIPELINE, ("Bloom apply from " + std::string(isSourcePing ? "Ping" : "Pong")).c_str());
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, applyPipelines[isSourcePing], VK_OBJECT_TYPE_PIPELINE, ("Bloom apply from " + std::string(isSourcePing ? "Ping" : "Pong")).c_str());
     }
 }
 

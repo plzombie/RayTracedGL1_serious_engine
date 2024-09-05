@@ -1688,11 +1688,11 @@ void VulkanDevice::CreateSyncPrimitives()
         r = vkCreateFence(device, &nonSignaledFenceInfo, nullptr, &outOfFrameFences[i]);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, imageAvailableSemaphores[i], VK_OBJECT_TYPE_SEMAPHORE, "Image available semaphore");
-        SET_DEBUG_NAME(device, renderFinishedSemaphores[i], VK_OBJECT_TYPE_SEMAPHORE, "Render finished semaphore");
-        SET_DEBUG_NAME(device, inFrameSemaphores[i], VK_OBJECT_TYPE_SEMAPHORE, "In-frame semaphore");
-        SET_DEBUG_NAME(device, frameFences[i], VK_OBJECT_TYPE_FENCE, "Frame fence");
-        SET_DEBUG_NAME(device, outOfFrameFences[i], VK_OBJECT_TYPE_FENCE, "Out of frame fence");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, imageAvailableSemaphores[i], VK_OBJECT_TYPE_SEMAPHORE, "Image available semaphore");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, renderFinishedSemaphores[i], VK_OBJECT_TYPE_SEMAPHORE, "Render finished semaphore");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, inFrameSemaphores[i], VK_OBJECT_TYPE_SEMAPHORE, "In-frame semaphore");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, frameFences[i], VK_OBJECT_TYPE_FENCE, "Frame fence");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, outOfFrameFences[i], VK_OBJECT_TYPE_FENCE, "Out of frame fence");
     }
 }
 

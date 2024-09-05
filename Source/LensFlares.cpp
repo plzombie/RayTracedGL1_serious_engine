@@ -431,7 +431,7 @@ void RTGL1::LensFlares::CreatePipelineLayouts(VkDescriptorSetLayout uniform, VkD
         VkResult r = vkCreatePipelineLayout(device, &layoutInfo, nullptr, &vertFragPipelineLayout);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, vertFragPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Lens flares vert-frag pipeline layout");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, vertFragPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Lens flares vert-frag pipeline layout");
     }
     {
         VkDescriptorSetLayout s[] =
@@ -449,7 +449,7 @@ void RTGL1::LensFlares::CreatePipelineLayouts(VkDescriptorSetLayout uniform, VkD
         VkResult r = vkCreatePipelineLayout(device, &layoutInfo, nullptr, &cullPipelineLayout);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, cullPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Lens flares cull pipeline layout");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, cullPipelineLayout, VK_OBJECT_TYPE_PIPELINE_LAYOUT, "Lens flares cull pipeline layout");
     }
 }
 
@@ -472,13 +472,13 @@ void RTGL1::LensFlares::CreatePipelines(const ShaderManager *shaderManager)
     info.stage = shaderManager->GetStageInfo("CCullLensFlares");
     info.stage.pSpecializationInfo = &spec;
 
-    VkResult r = vkCreateComputePipelines(device, nullptr, 1, &info, nullptr, &cullPipeline);
+    VkResult r = vkCreateComputePipelines(device, VK_NULL_HANDLE, 1, &info, nullptr, &cullPipeline);
     VK_CHECKERROR(r);
 }
 
 void RTGL1::LensFlares::DestroyPipelines()
 {
-    if (cullPipeline != nullptr)
+    if (cullPipeline != VK_NULL_HANDLE)
     {
         vkDestroyPipeline(device, cullPipeline, nullptr);
     }
@@ -509,7 +509,7 @@ void RTGL1::LensFlares::CreateCullDescriptors()
         VkResult r = vkCreateDescriptorPool(device, &poolInfo, nullptr, &cullDescPool);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, cullDescPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Lens flare cull desc pool");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, cullDescPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Lens flare cull desc pool");
     }
     {
         VkDescriptorSetLayoutBinding binding[2] = {};
@@ -532,7 +532,7 @@ void RTGL1::LensFlares::CreateCullDescriptors()
         VkResult r = vkCreateDescriptorSetLayout(device, &info, nullptr, &cullDescSetLayout);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, cullDescSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Lens flare cull desc set layout");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, cullDescSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Lens flare cull desc set layout");
     }
 
     {
@@ -545,7 +545,7 @@ void RTGL1::LensFlares::CreateCullDescriptors()
         VkResult r = vkAllocateDescriptorSets(device, &allocInfo, &cullDescSet);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, cullDescSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Lens flare cull desc set");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, cullDescSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Lens flare cull desc set");
     }
     {
         VkDescriptorBufferInfo bufs[2] = {};
@@ -602,7 +602,7 @@ void RTGL1::LensFlares::CreateRasterDescriptors()
         VkResult r = vkCreateDescriptorPool(device, &poolInfo, nullptr, &rasterDescPool);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, rasterDescPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Lens flare raster desc pool");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, rasterDescPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Lens flare raster desc pool");
     }
     {
         VkDescriptorSetLayoutBinding binding = {};
@@ -619,7 +619,7 @@ void RTGL1::LensFlares::CreateRasterDescriptors()
         VkResult r = vkCreateDescriptorSetLayout(device, &info, nullptr, &rasterDescSetLayout);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, rasterDescSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Lens flare raster desc set layout");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, rasterDescSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Lens flare raster desc set layout");
     }
 
     {
@@ -632,7 +632,7 @@ void RTGL1::LensFlares::CreateRasterDescriptors()
         VkResult r = vkAllocateDescriptorSets(device, &allocInfo, &rasterDescSet);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, rasterDescSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Lens flare raster desc set");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, rasterDescSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Lens flare raster desc set");
     }
     {
         VkDescriptorBufferInfo b = {};

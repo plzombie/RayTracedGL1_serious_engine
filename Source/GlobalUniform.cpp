@@ -59,7 +59,7 @@ void GlobalUniform::CreateDescriptors()
     r = vkCreateDescriptorSetLayout(device, &layoutInfo, nullptr, &descSetLayout);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, descSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Uniform Desc set layout");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Uniform Desc set layout");
 
     VkDescriptorPoolSize poolSize = {};
     poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
@@ -74,7 +74,7 @@ void GlobalUniform::CreateDescriptors()
     r = vkCreateDescriptorPool(device, &poolInfo, nullptr, &descPool);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, descPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Uniform Desc pool");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Uniform Desc pool");
 
     VkDescriptorSetAllocateInfo allocInfo = {};
     allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -85,7 +85,7 @@ void GlobalUniform::CreateDescriptors()
     r = vkAllocateDescriptorSets(device, &allocInfo, &descSet);
     VK_CHECKERROR(r);
 
-    SET_DEBUG_NAME(device, descSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Uniform Desc set");
+    SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Uniform Desc set");
 
     // bind buffers to sets once
     VkDescriptorBufferInfo bufInfo = {};

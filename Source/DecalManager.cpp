@@ -435,7 +435,7 @@ void RTGL1::DecalManager::CreateDescriptors()
         VkResult r = vkCreateDescriptorPool(device, &poolInfo, nullptr, &descPool);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, descPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Decal desc pool");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descPool, VK_OBJECT_TYPE_DESCRIPTOR_POOL, "Decal desc pool");
     }
     {
         VkDescriptorSetLayoutBinding binding = {};
@@ -452,7 +452,7 @@ void RTGL1::DecalManager::CreateDescriptors()
         VkResult r = vkCreateDescriptorSetLayout(device, &info, nullptr, &descSetLayout);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, descSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Decal desc set layout");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descSetLayout, VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT, "Decal desc set layout");
     }
 
     {
@@ -465,7 +465,7 @@ void RTGL1::DecalManager::CreateDescriptors()
         VkResult r = vkAllocateDescriptorSets(device, &allocInfo, &descSet);
         VK_CHECKERROR(r);
 
-        SET_DEBUG_NAME(device, descSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Decal desc set");
+        SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, descSet, VK_OBJECT_TYPE_DESCRIPTOR_SET, "Decal desc set");
     }
     {
         VkDescriptorBufferInfo b = {};

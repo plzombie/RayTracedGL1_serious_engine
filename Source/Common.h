@@ -75,7 +75,14 @@ inline void VK_CHECKERROR(const VkResult r)
 
 
 #define SET_DEBUG_NAME(device, obj, type, pName) AddDebugName((device), reinterpret_cast<uint64_t>(obj), (type), (pName))
-
+#if VK_USE_64_BIT_PTR_DEFINES == 1
+#define CAST_FROM_NON_DISPATCHABLE_HANDLE(h) (reinterpret_cast<uint64_t>(h))
+#define CAST_TO_NON_DISPATCHABLE_HANDLE(h, t) (reinterpret_cast<t>(h))
+#else
+#define CAST_FROM_NON_DISPATCHABLE_HANDLE(h) (h)
+#define CAST_TO_NON_DISPATCHABLE_HANDLE(h, t) (h)
+#endif
+#define SET_DEBUG_NAME_FOR_NON_DISPATCHABLE_HANDLE(device, obj, type, pName) AddDebugName((device), CAST_FROM_NON_DISPATCHABLE_HANDLE(obj), (type), (pName))
 
 // If name is null, debug name won't be set
 void AddDebugName(VkDevice device, uint64_t obj, VkObjectType type, const char *pName);
