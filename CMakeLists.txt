@@ -4,6 +4,10 @@ project(RayTracedGL1 CXX C)
 set(CMAKE_CXX_STANDARD 17)
 
 # Vulkan
+if(CMAKE_C_COMPILER MATCHES "/Hostx64/arm64/cl.exe$")
+    # If cross-compile with MSVC x64-arm64 then try to use differend folder for VULKAN
+    set(ENV{VULKAN_SDK} "$ENV{VULKAN_SDK_ARM64}")
+endif()
 message(STATUS "Adding Vulkan. VulkanSDK: $ENV{VULKAN_SDK}")
 find_package(Vulkan REQUIRED)
 add_library(Vulkan INTERFACE)
