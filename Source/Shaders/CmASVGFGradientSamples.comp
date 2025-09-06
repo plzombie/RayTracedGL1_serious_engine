@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #version 460
+#extension GL_ARB_shading_language_include : enable
 
 
 // "Gradient Estimation for Real-Time Adaptive Temporal Filtering", C.Schied et al.

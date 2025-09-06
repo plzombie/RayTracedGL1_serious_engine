@@ -1534,7 +1534,7 @@ void VulkanDevice::CreateDevice()
     features.shaderTessellationAndGeometryPointSize = 1;
     features.shaderImageGatherExtended = 1;
     features.shaderStorageImageExtendedFormats = 1;
-    features.shaderStorageImageMultisample = 1;
+    features.shaderStorageImageMultisample = 1; // Not supported by Intel ARC
     features.shaderStorageImageReadWithoutFormat = 1;
     features.shaderStorageImageWriteWithoutFormat = 1;
     features.shaderUniformBufferArrayDynamicIndexing = 1;
@@ -1543,11 +1543,11 @@ void VulkanDevice::CreateDevice()
     features.shaderStorageImageArrayDynamicIndexing = 1;
     features.shaderClipDistance = 1;
     features.shaderCullDistance = 1;
-    features.shaderFloat64 = 1;
+    features.shaderFloat64 = 1; // Not supported by Intel ARC
     features.shaderInt64 = 1;
     features.shaderInt16 = 1;
     features.shaderResourceResidency = 1;
-    features.shaderResourceMinLod = 1;
+    features.shaderResourceMinLod = 1; // Not supported by Intel ARC
     features.sparseBinding = 0;
     features.sparseResidencyBuffer = 0;
     features.sparseResidencyImage2D = 0;
@@ -1570,9 +1570,14 @@ void VulkanDevice::CreateDevice()
     vulkan12Features.shaderFloat16 = 1;
     vulkan12Features.drawIndirectCount = 1;
 
+    VkPhysicalDeviceVulkan11Features vulkan11Features = {};
+    vulkan11Features.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES;
+    vulkan11Features.pNext = &vulkan12Features;
+    vulkan11Features.multiview = 1;
+
     VkPhysicalDeviceMultiviewFeatures multiviewFeatures = {};
     multiviewFeatures.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES;
-    multiviewFeatures.pNext = &vulkan12Features;
+    multiviewFeatures.pNext = &vulkan11Features;
     multiviewFeatures.multiview = 1;
 
     VkPhysicalDevice16BitStorageFeatures storage16 = {};

@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #version 460
+#extension GL_ARB_shading_language_include : enable
 
 // http://www.iryoku.com/next-generation-post-processing-in-call-of-duty-advanced-warfare
 
@@ -60,6 +61,7 @@ vec3 getSample(sampler2D srcSampler, const vec2 uv)
             emis = clamp(emis, 0, 1) * getScreenEmissionFromAlbedo4(albedo4) * globalUniform.bloomEmissionMultiplier;
             
             const vec3 illum = textureLod(srcSampler, uv, 0).rgb * getExposure();
+//            const vec3 illum = texture(srcSampler, uv).rgb * getExposure();
             float f = smoothstep(globalUniform.bloomThreshold, globalUniform.bloomThreshold + globalUniform.bloomThresholdLength, getLuminance(illum));
 
             return illum * f + emis;
@@ -71,6 +73,7 @@ vec3 getSample(sampler2D srcSampler, const vec2 uv)
     }
 
     return textureLod(srcSampler, uv, 0).rgb;
+//    return texture(srcSampler, uv).rgb;
 }
 
 float getKarisWeight(const vec3 box4x4)

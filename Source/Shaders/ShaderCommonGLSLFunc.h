@@ -65,10 +65,10 @@ layout(
     binding = BINDING_TEXTURES)
     uniform sampler2D globalTextures[];
 
-sampler2D getTexture(uint textureIndex)
+/*sampler2D getTexture(uint textureIndex)
 {
     return globalTextures[nonuniformEXT(textureIndex)];
-}
+}*/
 
 vec4 getTextureSample(uint textureIndex, const vec2 texCoord)
 {
@@ -78,6 +78,7 @@ vec4 getTextureSample(uint textureIndex, const vec2 texCoord)
 vec4 getTextureSampleLod(uint textureIndex, const vec2 texCoord, float lod)
 {
     return textureLod(globalTextures[nonuniformEXT(textureIndex)], texCoord, lod);
+//    return texture(globalTextures[nonuniformEXT(textureIndex)], texCoord);
 }
 
 vec4 getTextureSampleGrad(uint textureIndex, const vec2 texCoord, const vec2 dPdx, const vec2 dPdy)
@@ -554,6 +555,7 @@ vec4 textureLodAlbedo(const vec2 uv)
 {
     // framebufAlbedo has nearest filtering, so values won't be interpolated
     return textureLod(framebufAlbedo_Sampler, uv, 0);
+//    return texture(framebufAlbedo_Sampler, uv);
 }
 #endif
 

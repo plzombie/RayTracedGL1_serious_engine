@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #version 460
+#extension GL_ARB_shading_language_include : enable
 
 layout (location = 0) in vec4 vertColor;
 layout (location = 1) in vec2 vertTexCoord;

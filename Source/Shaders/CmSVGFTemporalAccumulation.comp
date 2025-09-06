@@ -44,6 +44,7 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #version 460
+#extension GL_ARB_shading_language_include : enable
 
 // "Spatiotemporal Variance-Guided Filtering: Real-Time Reconstruction for Path-Traced Global Illumination", C.Schied et al.
 // 4.1 Temporal Filtering

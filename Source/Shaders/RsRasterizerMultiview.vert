@@ -19,7 +19,7 @@
 // SOFTWARE.
 
 #version 460
-
+#extension GL_ARB_shading_language_include : enable
 #extension GL_EXT_multiview : require
 
 #define DESC_SET_GLOBAL_UNIFORM 1

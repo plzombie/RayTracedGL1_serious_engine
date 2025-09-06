@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #version 460
+#extension GL_ARB_shading_language_include : enable
 
 layout (constant_id = 0) const uint maxAlbedoLayerCount = 0;
 #define MATERIAL_MAX_ALBEDO_LAYERS maxAlbedoLayerCount

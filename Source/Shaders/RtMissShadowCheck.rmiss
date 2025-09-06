@@ -20,6 +20,7 @@
 
 #version 460
 #extension GL_EXT_ray_tracing : require
+#extension GL_ARB_shading_language_include : enable
 
 #include "ShaderCommonGLSLFunc.h"
 

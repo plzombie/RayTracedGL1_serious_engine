@@ -23,6 +23,7 @@ It's achievable with hardware accelerated ray tracing, low sample per pixel coun
 
 1. Configure with CMake
     * on Windows, with Visual Studio: 
+        * if you try to cross-compile ARM64 on X64 then set VULKAN_SDK_ARM64 environment variable for ARM64 Vulkan SDK (VULKAN_SDK remains for X86/X64 version)
         * open the folder as CMake project
     * otherwise:
         * specify windowing systems to build the library with, by enabling some of the CMake options:

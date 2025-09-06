@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #version 460
+#extension GL_ARB_shading_language_include : enable
 
 #define FRAMEBUF_IGNORE_ATTACHMENTS
 #define DESC_SET_GLOBAL_UNIFORM 0

@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #version 460
+#extension GL_ARB_shading_language_include : enable
 
 // don't need albedo for direct illumination
 #define MATERIAL_MAX_ALBEDO_LAYERS 0
